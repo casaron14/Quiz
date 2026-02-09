@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seminar Quiz Platform - Test your knowledge and compete for prizes!">
+    <title>Seminar Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ Seminar Quiz Challenge</h1>
+            <p>Test your knowledge and win prizes!</p>
+        </div>
+
+        <!-- Landing View -->
+        <div id="landingView" class="view active">
+            <div class="card">
+                <div id="quizStatusMessage" class="message-box message-info" style="display: none;">
+                    <h3 id="statusTitle">⏳ Waiting for Admin</h3>
+                    <p id="statusText">The quiz hasn't started yet. Please wait for the admin to activate the quiz.</p>
+                </div>
+                <div class="instructions">
+                    <h3>📋 How It Works</h3>
+                    <ul>
+                        <li>You'll have <strong>100 seconds</strong> to answer 10 random questions</li>
+                        <li>Each question has multiple choice answers</li>
+                        <li>Get <strong>immediate feedback</strong> on each answer (green = correct, red = incorrect)
+                        </li>
+                        <li>Answer all 10 correctly within time to make the leaderboard</li>
+                        <li>First 7 winners get prizes! 🏆</li>
+                    </ul>
+                </div>
+                <div class="text-center mt-lg">
+                    <button id="startBtn" class="btn btn-primary" disabled>Start Quiz</button>
+                    <p id="buttonHint" style="margin-top: 1rem; color: var(--text-tertiary); font-size: 0.9rem;"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz View -->
+        <div id="quizView" class="view">
+            <div class="card">
+                <div class="timer-container">
+                    <div id="timer" class="timer">
+                        <span id="timerValue" class="timer-value">100</span>
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <div class="question-header">
+                        <span id="questionNumber" class="question-number">Question 1 of 10</span>
+                        <span id="correctCount" class="question-number">Correct: 0</span>
+                    </div>
+                    <h2 id="questionText" class="question-text"></h2>
+                    <div id="optionsContainer" class="options-container"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completion View (Success) -->
+        <div id="completionView" class="view">
+            <div class="card">
+                <div class="message-box message-success">
+                    <h2>🎉 Congratulations!</h2>
+                    <p>You answered all 10 questions correctly! Enter your name to join the leaderboard.</p>
+                </div>
+
+                <form id="submissionForm">
+                    <div class="form-group">
+                        <label for="userId" class="form-label">Your Name / ID</label>
+                        <input type="text" id="userId" class="form-input" placeholder="Enter your unique name or ID"
+                            required maxlength="50">
+                    </div>
+                    <button type="submit" class="btn btn-success" style="width: 100%;">Send & Join Leaderboard</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Retry View (Failed) -->
+        <div id="retryView" class="view">
+            <div class="card">
+                <div class="message-box message-error">
+                    <h2 id="retryTitle">⏰ Time's Up!</h2>
+                    <p id="retryMessage">You didn't answer all questions correctly in time. Want to try again?</p>
+                </div>
+                <div class="text-center mt-lg">
+                    <button id="retryBtn" class="btn btn-primary">Retry Quiz</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Ended View -->
+        <div id="endedView" class="view">
+            <div class="card">
+                <div class="quiz-ended-message">
+                    <h2>🏁 Quiz Ended</h2>
+                    <p>The quiz has concluded. Winners have been determined!</p>
+                    <p class="mt-lg">Check the leaderboard below to see the results.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard (Always Visible) -->
+        <div id="leaderboardContainer" class="leaderboard-container">
+            <div class="card glass-card">
+                <div class="leaderboard-header">
+                    <h2>🏆 Leaderboard</h2>
+                    <span id="winnerCount" class="winner-badge">0 / 7 Winners</span>
+                </div>
+                <div id="leaderboardContent">
+                    <div class="empty-state">No winners yet. Be the first!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== STATE MANAGEMENT ====================
+        const state = {
+            questions: [],
+            currentQuestionIndex: 0,
+            correctAnswers: 0,
+            timeRemaining: 100,
+            timerInterval: null,
+            quizState: 'inactive', // inactive, live, ended
+            userAnswers: []
+        };
+
+        // ==================== DOM ELEMENTS ====================
+        const elements = {
+            landingView: document.getElementById('landingView'),
+            quizView: document.getElementById('quizView'),
+            completionView: document.getElementById('completionView'),
+            retryView: document.getElementById('retryView'),
+            endedView: document.getElementById('endedView'),
+            startBtn: document.getElementById('startBtn'),
+            retryBtn: document.getElementById('retryBtn'),
+            retryTitle: document.getElementById('retryTitle'),
+            timer: document.getElementById('timer'),
+            timerValue: document.getElementById('timerValue'),
+            questionNumber: document.getElementById('questionNumber'),
+            correctCount: document.getElementById('correctCount'),
+            questionText: document.getElementById('questionText'),
+            optionsContainer: document.getElementById('optionsContainer'),
+            submissionForm: document.getElementById('submissionForm'),
+            userId: document.getElementById('userId'),
+            retryMessage: document.getElementById('retryMessage'),
+            leaderboardContent: document.getElementById('leaderboardContent'),
+            winnerCount: document.getElementById('winnerCount'),
+            quizStatusMessage: document.getElementById('quizStatusMessage'),
+            statusTitle: document.getElementById('statusTitle'),
+            statusText: document.getElementById('statusText'),
+            buttonHint: document.getElementById('buttonHint')
+        };
+
+        // ==================== VIEW MANAGEMENT ====================
+        function showView(viewName) {
+            document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+            elements[`${viewName}View`].classList.add('active');
+        }
+
+        // ==================== QUIZ STATE CHECK ====================
+        async function checkQuizState() {
+            try {
+                const response = await fetch('/api/quiz-state');
+                const data = await response.json();
+                state.quizState = data.state;
+
+                // Update UI based on quiz state
+                updateQuizStateUI(data.state);
+
+                if (data.state === 'ended') {
+                    showView('ended');
+                    stopTimer();
+                }
+
+                return data.state;
+            } catch (error) {
+                console.error('Error checking quiz state:', error);
+                return state.quizState;
+            }
+        }
+
+        // Update UI elements based on quiz state
+        function updateQuizStateUI(quizState) {
+            const currentView = document.querySelector('.view.active');
+            const isLandingView = currentView === elements.landingView;
+
+            if (!isLandingView) return; // Only update if on landing page
+
+            if (quizState === 'inactive') {
+                // Quiz not started yet
+                elements.startBtn.disabled = true;
+                elements.quizStatusMessage.style.display = 'block';
+                elements.quizStatusMessage.className = 'message-box message-info';
+                elements.statusTitle.textContent = '⏳ Waiting for Admin';
+                elements.statusText.textContent = 'The quiz hasn\'t started yet. Please wait for the admin to activate the quiz.';
+                elements.buttonHint.textContent = 'Button will be enabled when quiz starts';
+            } else if (quizState === 'live') {
+                // Quiz is active
+                elements.startBtn.disabled = false;
+                elements.quizStatusMessage.style.display = 'block';
+                elements.quizStatusMessage.className = 'message-box message-success';
+                elements.statusTitle.textContent = '✅ Quiz is Live!';
+                elements.statusText.textContent = 'The quiz is now active. Click the button below to start!';
+                elements.buttonHint.textContent = '';
+            } else if (quizState === 'ended') {
+                // Quiz has ended
+                elements.startBtn.disabled = true;
+                elements.quizStatusMessage.style.display = 'block';
+                elements.quizStatusMessage.className = 'message-box message-error';
+                elements.statusTitle.textContent = '🏁 Quiz Ended';
+                elements.statusText.textContent = 'The quiz has concluded. Check the leaderboard below for results.';
+                elements.buttonHint.textContent = 'No more attempts allowed';
+            }
+        }
+
+        // ==================== TIMER ====================
+        function startTimer() {
+            state.timeRemaining = 100;
+            updateTimerDisplay();
+
+            state.timerInterval = setInterval(async () => {
+                state.timeRemaining--;
+                updateTimerDisplay();
+
+                // Check for quiz end every second
+                await checkQuizState();
+
+                if (state.timeRemaining <= 0) {
+                    stopTimer();
+                    handleTimeOut('timeout');
+                } else if (state.timeRemaining <= 20) {
+                    elements.timer.classList.add('warning');
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (state.timerInterval) {
+                clearInterval(state.timerInterval);
+                state.timerInterval = null;
+            }
+            elements.timer.classList.remove('warning');
+        }
+
+        function updateTimerDisplay() {
+            elements.timerValue.textContent = state.timeRemaining;
+        }
+
+        // ==================== QUESTION LOADING ====================
+        async function loadQuestions() {
+            try {
+                const response = await fetch('/api/questions');
+                const data = await response.json();
+                state.questions = data.questions;
+                return true;
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                alert('Failed to load questions. Please try again.');
+                return false;
+            }
+        }
+
+        // ==================== QUIZ START ====================
+        async function startQuiz() {
+            // Check quiz state first
+            const quizState = await checkQuizState();
+
+            if (quizState === 'inactive') {
+                alert('⏳ The quiz hasn\'t started yet. Please wait for the admin to activate it.');
+                return;
+            }
+
+            if (quizState === 'ended') {
+                showView('ended');
+                return;
+            }
+
+            if (quizState !== 'live') {
+                alert('The quiz is not available right now.');
+                return;
+            }
+
+            // Reset state completely
+            state.currentQuestionIndex = 0;
+            state.correctAnswers = 0;
+            state.userAnswers = [];
+            state.timeRemaining = 100;
+
+            // Clear any lingering DOM states
+            elements.optionsContainer.innerHTML = ''; // Clear old options
+            elements.timer.classList.remove('warning'); // Remove warning class
+            
+            // Clear form
+            elements.userId.value = '';
+
+            // Load fresh questions
+            const loaded = await loadQuestions();
+            if (!loaded) return;
+
+            // Show quiz view and start timer
+            showView('quiz');
+            startTimer();
+            displayQuestion();
+        }
+
+        // ==================== QUESTION DISPLAY ====================
+        function displayQuestion() {
+            const question = state.questions[state.currentQuestionIndex];
+
+            elements.questionNumber.textContent = `Question ${state.currentQuestionIndex + 1} of ${state.questions.length}`;
+            elements.correctCount.textContent = `Correct: ${state.correctAnswers}`;
+            elements.questionText.textContent = question.question;
+
+            // Clear and populate options
+            elements.optionsContainer.innerHTML = '';
+            question.options.forEach((option, index) => {
+                const optionBtn = document.createElement('button');
+                optionBtn.className = 'option';
+                optionBtn.textContent = option;
+                optionBtn.onclick = () => handleAnswer(index);
+                elements.optionsContainer.appendChild(optionBtn);
+            });
+        }
+
+        // ==================== ANSWER HANDLING ====================
+        async function handleAnswer(selectedIndex) {
+            // Check quiz state before processing answer
+            const quizState = await checkQuizState();
+            if (quizState === 'ended') {
+                stopTimer();
+                showView('ended');
+                return;
+            }
+
+            const question = state.questions[state.currentQuestionIndex];
+            const isCorrect = selectedIndex === question.correctAnswer;
+
+            // Disable all options
+            const options = elements.optionsContainer.querySelectorAll('.option');
+            options.forEach(opt => opt.disabled = true);
+
+            // Show feedback
+            options[selectedIndex].classList.add(isCorrect ? 'correct' : 'incorrect');
+
+            if (isCorrect) {
+                state.correctAnswers++;
+                state.userAnswers.push(selectedIndex);
+            }
+
+            // Auto-advance after short delay
+            setTimeout(() => {
+                state.currentQuestionIndex++;
+
+                if (state.currentQuestionIndex >= state.questions.length) {
+                    handleQuizComplete();
+                } else {
+                    displayQuestion();
+                }
+            }, 450);
+        }
+
+        // ==================== QUIZ COMPLETION ====================
+        function handleQuizComplete() {
+            stopTimer();
+
+            if (state.correctAnswers === state.questions.length) {
+                showView('completion');
+            } else {
+                handleTimeOut('incomplete');
+            }
+        }
+
+            function handleTimeOut(reason) {
+                if (reason === 'incomplete') {
+                    const missed = state.questions.length - state.correctAnswers;
+                    const plural = missed === 1 ? 'question' : 'questions';
+                    elements.retryTitle.textContent = 'Results';
+                    elements.retryMessage.textContent = `You missed ${missed} ${plural}. Please try again.`;
+                } else {
+                    elements.retryTitle.textContent = "⏰ Time's Up!";
+                    elements.retryMessage.textContent = `You answered ${state.correctAnswers} out of ${state.questions.length} questions correctly.`;
+                }
+
+                showView('retry');
+            }
+
+        // ==================== SUBMISSION ====================
+        elements.submissionForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const userId = elements.userId.value.trim();
+            if (!userId) {
+                alert('Please enter your name or ID');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/submit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        userId,
+                        answers: state.userAnswers,
+                        correctCount: state.correctAnswers
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    alert('🎉 Successfully submitted! Check the leaderboard below.');
+                    elements.userId.value = '';
+                    showView('landing');
+                    updateLeaderboard();
+                } else {
+                    if (data.message === 'Quiz has ended') {
+                        alert('The quiz has ended. No more submissions are being accepted.');
+                        showView('ended');
+                    } else {
+                        alert(data.message || 'Submission failed. Please try again.');
+                    }
+                }
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('Failed to submit. Please try again.');
+            }
+        });
+
+        // ==================== LEADERBOARD ====================
+        async function updateLeaderboard() {
+            try {
+                const response = await fetch('/api/leaderboard');
+                const data = await response.json();
+
+                displayLeaderboard(data.leaderboard, data.winnerCount);
+            } catch (error) {
+                console.error('Error updating leaderboard:', error);
+            }
+        }
+
+        function displayLeaderboard(leaderboard, winnerCount) {
+            elements.winnerCount.textContent = `${winnerCount} / 7 Winners`;
+
+            if (leaderboard.length === 0) {
+                elements.leaderboardContent.innerHTML = '<div class="empty-state">No winners yet. Be the first!</div>';
+                return;
+            }
+
+            const table = `
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name / ID</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${leaderboard.map((entry, index) => `
+                            <tr>
+                                <td class="rank">${index + 1}</td>
+                                <td>${escapeHtml(entry.userId)}</td>
+                                <td>${formatTimestamp(entry.timestamp)}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            elements.leaderboardContent.innerHTML = table;
+        }
+
+        function formatTimestamp(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleTimeString();
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ==================== EVENT LISTENERS ====================
+        elements.startBtn.addEventListener('click', startQuiz);
+        elements.retryBtn.addEventListener('click', startQuiz);
+
+        // ==================== INITIALIZATION ====================
+        async function init() {
+            await checkQuizState();
+            updateLeaderboard();
+
+            // Poll leaderboard every 5 seconds
+            setInterval(updateLeaderboard, 5000);
+
+            // Check quiz state periodically
+            setInterval(checkQuizState, 5000);
+        }
+
+        // Start the app
+        init();
+    </script>
+</body>
+
+</html>

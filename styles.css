@@ -1,0 +1,900 @@
+/* ========================================
+   Seminar Quiz Platform - Styles
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Vintage Retro Color Palette */
+    --primary: hsl(24, 68%, 58%);
+    /* Burnt Orange */
+    --primary-light: hsl(42, 78%, 65%);
+    /* Mustard Yellow */
+    --primary-dark: hsl(18, 58%, 48%);
+    /* Deep Burnt Orange */
+    --secondary: hsl(174, 48%, 52%);
+    /* Retro Teal */
+    --success: hsl(142, 45%, 48%);
+    /* Muted Green */
+    --error: hsl(355, 65%, 58%);
+    /* Vintage Red */
+    --warning: hsl(42, 78%, 65%);
+    /* Mustard */
+    --accent: hsl(28, 75%, 45%);
+    /* Terracotta */
+
+    /* Vintage Neutrals */
+    --bg-primary: hsl(36, 35%, 92%);
+    /* Cream */
+    --bg-secondary: hsl(35, 30%, 88%);
+    /* Light Beige */
+    --bg-tertiary: hsl(34, 25%, 95%);
+    /* Off-white */
+    --bg-card: hsl(0, 0%, 98%);
+    /* Warm White */
+    --text-primary: hsl(25, 25%, 25%);
+    /* Dark Brown */
+    --text-secondary: hsl(25, 20%, 45%);
+    /* Medium Brown */
+    --text-tertiary: hsl(25, 15%, 60%);
+    /* Light Brown */
+    --border-color: hsl(25, 25%, 75%);
+    /* Tan Border */
+
+    /* Vintage Effects */
+    --shadow-sm: 0 2px 8px rgba(101, 67, 33, 0.15);
+    --shadow-md: 0 4px 16px rgba(101, 67, 33, 0.2);
+    --shadow-lg: 0 8px 32px rgba(101, 67, 33, 0.25);
+    --shadow-retro: 4px 4px 0px rgba(101, 67, 33, 0.2);
+    --glow-primary: 0 0 20px hsla(24, 68%, 58%, 0.3);
+    --glow-success: 0 0 20px hsla(142, 45%, 48%, 0.3);
+    --glow-error: 0 0 20px hsla(355, 65%, 58%, 0.3);
+
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 1.5rem;
+    --space-lg: 2rem;
+    --space-xl: 3rem;
+
+    /* Border Radius - More boxy for retro feel */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --radius-xl: 12px;
+
+    /* Transitions */
+    --transition-fast: 150ms ease-in-out;
+    --transition-normal: 300ms ease-in-out;
+    --transition-slow: 500ms ease-in-out;
+}
+
+/* ========================================
+   Base Styles
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background:
+        repeating-linear-gradient(45deg,
+            var(--bg-primary),
+            var(--bg-primary) 10px,
+            var(--bg-secondary) 10px,
+            var(--bg-secondary) 20px);
+    background-size: 200% 200%;
+    background-attachment: fixed;
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   Container & Layout
+   ======================================== */
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-sm);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: var(--space-md);
+    }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    padding: var(--space-md) 0;
+}
+
+.header h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--space-sm);
+    animation: fadeInDown 0.6s ease-out;
+    text-shadow: 2px 2px 0px rgba(101, 67, 33, 0.1);
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+    .header h1 {
+        font-size: 3rem;
+        letter-spacing: -1px;
+    }
+}
+
+.header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 500;
+    animation: fadeIn 0.8s ease-out 0.2s both;
+}
+
+@media (min-width: 768px) {
+    .header p {
+        font-size: 1.2rem;
+    }
+}
+
+/* ========================================
+   Cards & Panels
+   ======================================== */
+
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-retro);
+    border: 3px solid var(--border-color);
+    position: relative;
+    animation: fadeInUp 0.6s ease-out;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg,
+            var(--primary) 0%,
+            var(--primary-light) 33%,
+            var(--secondary) 66%,
+            var(--accent) 100%);
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 30px;
+    height: 30px;
+    background: var(--primary);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    opacity: 0.3;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 3px solid var(--secondary);
+    backdrop-filter: blur(10px);
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    font-family: inherit;
+    position: relative;
+    overflow: hidden;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .btn {
+        width: auto;
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        min-height: auto;
+        display: inline-block;
+    }
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width var(--transition-slow), height var(--transition-slow);
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    border: 3px solid var(--primary-dark);
+    box-shadow: 4px 4px 0px var(--primary-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--primary-dark);
+}
+
+.btn-primary:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--primary-dark);
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+    border: 3px solid hsl(142, 45%, 35%);
+    box-shadow: 4px 4px 0px hsl(142, 45%, 35%);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-success:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px hsl(142, 45%, 35%);
+}
+
+.btn-error {
+    background: var(--error);
+    color: white;
+    border: 3px solid hsl(355, 65%, 45%);
+    box-shadow: 4px 4px 0px hsl(355, 65%, 45%);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 3px solid var(--border-color);
+    box-shadow: 4px 4px 0px var(--border-color);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-secondary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--border-color);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: 2px 2px 0px rgba(101, 67, 33, 0.2);
+}
+
+/* ========================================
+   Timer
+   ======================================== */
+
+.timer-container {
+    text-align: center;
+    margin: var(--space-md) 0;
+}
+
+@media (min-width: 768px) {
+    .timer-container {
+        margin: var(--space-lg) 0;
+    }
+}
+
+.timer {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: 4px solid var(--primary-dark);
+    box-shadow: 0 6px 0px var(--primary-dark);
+    position: relative;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+    .timer {
+        width: 140px;
+        height: 140px;
+        border: 5px solid var(--primary-dark);
+        box-shadow: 0 8px 0px var(--primary-dark);
+    }
+}
+
+.timer-value {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 768px) {
+    .timer-value {
+        font-size: 3rem;
+    }
+}
+
+.timer.warning {
+    background: var(--error);
+    border-color: hsl(355, 65%, 40%);
+    box-shadow: 0 6px 0px hsl(355, 65%, 40%);
+    animation: shake 0.5s ease-in-out infinite;
+}
+
+@media (min-width: 768px) {
+    .timer.warning {
+        box-shadow: 0 8px 0px hsl(355, 65%, 40%);
+    }
+}
+
+/* ========================================
+   Questions
+   ======================================== */
+
+.question-container {
+    margin-bottom: var(--space-lg);
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+
+.question-number {
+    font-size: 0.9rem;
+    color: var(--text-tertiary);
+    font-weight: 600;
+}
+
+.question-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+@media (min-width: 768px) {
+    .question-text {
+        font-size: 1.4rem;
+        margin-bottom: var(--space-lg);
+    }
+}
+
+.options-container {
+    display: grid;
+    gap: var(--space-sm);
+}
+
+.option {
+    background: var(--bg-card);
+    border: 3px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-size: 1rem;
+    font-weight: 600;
+    position: relative;
+    box-shadow: 3px 3px 0px rgba(101, 67, 33, 0.15);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+@media (min-width: 768px) {
+    .option {
+        padding: var(--space-md) var(--space-lg);
+        font-size: 1.1rem;
+    }
+}
+
+.option:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--primary);
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0px var(--primary);
+}
+
+.option.correct {
+    background: var(--success);
+    border-color: hsl(142, 45%, 35%);
+    animation: correctPulse 0.5s ease-out;
+    color: white;
+    box-shadow: 4px 4px 0px hsl(142, 45%, 35%);
+}
+
+.option.incorrect {
+    background: var(--error);
+    border-color: hsl(355, 65%, 45%);
+    animation: shake 0.5s ease-out;
+    color: white;
+    box-shadow: 4px 4px 0px hsl(355, 65%, 45%);
+}
+
+.option:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* ========================================
+   Forms
+   ======================================== */
+
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+.form-label {
+    display: block;
+    margin-bottom: var(--space-xs);
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.form-input {
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--bg-card);
+    border: 3px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: inherit;
+    transition: all var(--transition-normal);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.05), 0 0 0 3px rgba(214, 129, 95, 0.2);
+}
+
+/* ========================================
+   Leaderboard
+   ======================================== */
+
+.leaderboard-container {
+    margin-top: var(--space-xl);
+}
+
+.leaderboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+
+.leaderboard-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.winner-badge {
+    background: linear-gradient(135deg, var(--warning), hsl(38, 92%, 40%));
+    color: white;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-lg);
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 var(--space-xs);
+    font-size: 0.85rem;
+}
+
+@media (min-width: 768px) {
+    .leaderboard-table {
+        font-size: 1rem;
+    }
+}
+
+.leaderboard-table thead th {
+    background: var(--bg-tertiary);
+    padding: var(--space-sm);
+    text-align: left;
+    font-weight: 700;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@media (min-width: 768px) {
+    .leaderboard-table thead th {
+        padding: var(--space-md);
+        font-size: 0.9rem;
+    }
+}
+
+.leaderboard-table thead th:first-child {
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.leaderboard-table thead th:last-child {
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.leaderboard-table tbody tr {
+    background: var(--bg-secondary);
+    transition: all var(--transition-normal);
+}
+
+.leaderboard-table tbody tr:hover {
+    background: var(--bg-tertiary);
+    transform: scale(1.01);
+}
+
+.leaderboard-table tbody td {
+    padding: var(--space-sm);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (min-width: 768px) {
+    .leaderboard-table tbody td {
+        padding: var(--space-md);
+    }
+}
+
+.leaderboard-table tbody tr:first-child {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+}
+
+.leaderboard-table tbody tr:first-child td:first-child::before {
+    content: '🏆';
+    margin-right: var(--space-xs);
+}
+
+.rank {
+    font-weight: 700;
+    color: var(--primary-light);
+    font-size: 1.1rem;
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--space-xl);
+    color: var(--text-tertiary);
+    font-size: 1.1rem;
+}
+
+/* ========================================
+   Admin Controls
+   ======================================== */
+
+.admin-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-lg);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.status-inactive {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+}
+
+.status-live {
+    background: linear-gradient(135deg, var(--success), hsl(142, 76%, 30%));
+    color: white;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.status-ended {
+    background: linear-gradient(135deg, var(--error), hsl(0, 84%, 50%));
+    color: white;
+}
+
+/* ========================================
+   States & Messages
+   ======================================== */
+
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.message-box {
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-lg);
+    border-left: 4px solid;
+}
+
+.message-success {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: var(--success);
+    color: var(--success);
+}
+
+.message-error {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: var(--error);
+    color: var(--error);
+}
+
+.message-info {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.quiz-ended-message {
+    text-align: center;
+    padding: var(--space-xl);
+}
+
+.quiz-ended-message h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-md);
+    color: var(--error);
+}
+
+/* ========================================
+   Instructions
+   ======================================== */
+
+.instructions {
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+    border: 3px solid var(--secondary);
+    border-left-width: 8px;
+    box-shadow: 3px 3px 0px rgba(101, 67, 33, 0.15);
+}
+
+.instructions h3 {
+    margin-bottom: var(--space-md);
+    color: var(--primary);
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.instructions ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.instructions li {
+    padding: var(--space-xs) 0;
+    padding-left: 2rem;
+    position: relative;
+    font-weight: 500;
+}
+
+.instructions li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* ========================================
+   Utilities
+   ======================================== */
+
+.text-center {
+    text-align: center;
+}
+
+.mt-lg {
+    margin-top: var(--space-lg);
+}
+
+.mb-lg {
+    margin-bottom: var(--space-lg);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes correctPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: var(--glow-success);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ========================================
+   Responsive Design - Additional Tweaks
+   ======================================== */
+
+/* Ensure touch targets are at least 44x44px on mobile */
+@media (max-width: 767px) {
+
+    .btn,
+    .option,
+    .form-input {
+        -webkit-tap-highlight-color: rgba(214, 129, 95, 0.3);
+    }
+
+    /* Prevent text selection on double-tap */
+    .btn,
+    .option {
+        -webkit-user-select: none;
+        user-select: none;
+    }
+
+    /* Reduce animations on mobile for better performance */
+    * {
+        animation-duration: 0.3s !important;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 767px) and (orientation: landscape) {
+    .header {
+        margin-bottom: var(--space-sm);
+        padding: var(--space-sm) 0;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .timer {
+        width: 90px;
+        height: 90px;
+    }
+
+    .timer-value {
+        font-size: 2rem;
+    }
+}

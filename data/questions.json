@@ -1,0 +1,204 @@
+{
+  "questions": [
+    {
+      "question": "What does HTML stand for?",
+      "options": [
+        "Hyper Text Markup Language",
+        "High Tech Modern Language",
+        "Home Tool Markup Language",
+        "Hyperlinks and Text Markup Language"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which programming language is known as the 'language of the web'?",
+      "options": [
+        "Python",
+        "JavaScript",
+        "Java",
+        "C++"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What does CSS stand for?",
+      "options": [
+        "Creative Style Sheets",
+        "Cascading Style Sheets",
+        "Computer Style Sheets",
+        "Colorful Style Sheets"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What is the primary purpose of a database?",
+      "options": [
+        "To design websites",
+        "To store and organize data",
+        "To create animations",
+        "To write code"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which of these is a version control system?",
+      "options": [
+        "Docker",
+        "Git",
+        "Node.js",
+        "React"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What does API stand for?",
+      "options": [
+        "Application Programming Interface",
+        "Advanced Programming Integration",
+        "Automated Program Interaction",
+        "Application Process Integration"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which cloud platform is built by Amazon?",
+      "options": [
+        "Azure",
+        "Google Cloud",
+        "AWS",
+        "IBM Cloud"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is the main function of a router in networking?",
+      "options": [
+        "Store files",
+        "Connect devices and route data",
+        "Increase internet speed",
+        "Protect from viruses"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which language is primarily used for iOS app development?",
+      "options": [
+        "Kotlin",
+        "Java",
+        "Swift",
+        "Python"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What does SQL stand for?",
+      "options": [
+        "Simple Query Language",
+        "Structured Query Language",
+        "Standard Query Language",
+        "System Query Language"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What is the purpose of a firewall?",
+      "options": [
+        "Speed up connections",
+        "Protect network from threats",
+        "Store passwords",
+        "Increase bandwidth"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which protocol is used for secure web browsing?",
+      "options": [
+        "HTTP",
+        "FTP",
+        "HTTPS",
+        "SMTP"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What does RAM stand for?",
+      "options": [
+        "Read Access Memory",
+        "Random Access Memory",
+        "Rapid Application Memory",
+        "Read And Modify"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which company developed the Android operating system?",
+      "options": [
+        "Apple",
+        "Microsoft",
+        "Google",
+        "Samsung"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is the main purpose of an operating system?",
+      "options": [
+        "Browse the internet",
+        "Manage hardware and software resources",
+        "Create documents",
+        "Send emails"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What does AI stand for?",
+      "options": [
+        "Automated Intelligence",
+        "Artificial Intelligence",
+        "Advanced Integration",
+        "Application Interface"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which of these is a NoSQL database?",
+      "options": [
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB",
+        "Oracle"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is the primary function of DNS?",
+      "options": [
+        "Encrypt data",
+        "Convert domain names to IP addresses",
+        "Store files",
+        "Compress images"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which programming paradigm does Python support?",
+      "options": [
+        "Only object-oriented",
+        "Only functional",
+        "Multiple paradigms",
+        "Only procedural"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What does IoT stand for?",
+      "options": [
+        "Internet of Things",
+        "Integration of Technology",
+        "International Technology",
+        "Internet on Time"
+      ],
+      "correctAnswer": 0
+    }
+  ]
+}

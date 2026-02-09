@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Seminar Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Admin Control Panel</h1>
+            <p>Manage quiz lifecycle and monitor winners</p>
+        </div>
+
+        <!-- Login View -->
+        <div id="loginView" class="view active">
+            <div class="card">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="password" class="form-label">Admin Password</label>
+                        <input type="password" id="password" class="form-input" placeholder="Enter admin password"
+                            required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Admin View -->
+        <div id="adminView" class="view">
+            <div class="card">
+                <div class="message-box message-info">
+                    <strong>Current Status:</strong>
+                    <span id="currentStatus" class="status-badge status-inactive">Inactive</span>
+                </div>
+
+                <div class="admin-controls">
+                    <button id="startQuizBtn" class="btn btn-success">Start Quiz</button>
+                    <button id="endQuizBtn" class="btn btn-error">End Quiz</button>
+                    <button id="resetQuizBtn" class="btn btn-secondary">Reset All Data</button>
+                </div>
+
+                <div class="message-box message-info mt-lg">
+                    <p><strong>💡 Tips:</strong></p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li><strong>Start Quiz:</strong> Allows participants to begin taking the quiz</li>
+                        <li><strong>End Quiz:</strong> Stops all submissions immediately</li>
+                        <li><strong>Reset:</strong> Clears all data and returns to Inactive state</li>
+                        <li><strong>Auto-End:</strong> Quiz automatically ends when 7 winners are reached</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Leaderboard -->
+            <div class="leaderboard-container">
+                <div class="card glass-card">
+                    <div class="leaderboard-header">
+                        <h2>🏆 Live Leaderboard</h2>
+                        <span id="winnerCount" class="winner-badge">0 / 7 Winners</span>
+                    </div>
+                    <div id="leaderboardContent">
+                        <div class="empty-state">No winners yet</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== STATE ====================
+        let adminPassword = '';
+        let currentQuizState = 'inactive';
+
+        // ==================== DOM ELEMENTS ====================
+        const elements = {
+            loginView: document.getElementById('loginView'),
+            adminView: document.getElementById('adminView'),
+            loginForm: document.getElementById('loginForm'),
+            password: document.getElementById('password'),
+            currentStatus: document.getElementById('currentStatus'),
+            startQuizBtn: document.getElementById('startQuizBtn'),
+            endQuizBtn: document.getElementById('endQuizBtn'),
+            resetQuizBtn: document.getElementById('resetQuizBtn'),
+            leaderboardContent: document.getElementById('leaderboardContent'),
+            winnerCount: document.getElementById('winnerCount')
+        };
+
+        // ==================== VIEW MANAGEMENT ====================
+        function showView(viewName) {
+            document.querySelectorAll('.view').forEach(view => view.classList.remove('active'));
+            elements[`${viewName}View`].classList.add('active');
+        }
+
+        // ==================== LOGIN ====================
+        elements.loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            adminPassword = elements.password.value;
+
+            // Verify password works by checking quiz state
+            checkQuizState().then(success => {
+                if (success) {
+                    showView('admin');
+                    loadAdminData();
+                } else {
+                    alert('Invalid password');
+                    elements.password.value = '';
+                }
+            });
+        });
+
+        // ==================== QUIZ STATE ====================
+        async function checkQuizState() {
+            try {
+                const response = await fetch('/api/quiz-state', {
+                    headers: {
+                        'Authorization': adminPassword
+                    }
+                });
+
+                if (!response.ok) return false;
+
+                const data = await response.json();
+                updateQuizStateDisplay(data.state);
+                return true;
+            } catch (error) {
+                console.error('Error checking quiz state:', error);
+                return false;
+            }
+        }
+
+        function updateQuizStateDisplay(state) {
+            currentQuizState = state;
+            elements.currentStatus.className = 'status-badge';
+
+            switch (state) {
+                case 'inactive':
+                    elements.currentStatus.classList.add('status-inactive');
+                    elements.currentStatus.textContent = 'Inactive';
+                    elements.startQuizBtn.disabled = false;
+                    elements.endQuizBtn.disabled = true;
+                    elements.resetQuizBtn.disabled = true;
+                    break;
+                case 'live':
+                    elements.currentStatus.classList.add('status-live');
+                    elements.currentStatus.textContent = 'Live';
+                    elements.startQuizBtn.disabled = true;
+                    elements.endQuizBtn.disabled = false;
+                    elements.resetQuizBtn.disabled = false;
+                    break;
+                case 'ended':
+                    elements.currentStatus.classList.add('status-ended');
+                    elements.currentStatus.textContent = 'Ended';
+                    elements.startQuizBtn.disabled = true;
+                    elements.endQuizBtn.disabled = true;
+                    elements.resetQuizBtn.disabled = false;
+                    break;
+            }
+        }
+
+        // ==================== QUIZ CONTROL ====================
+        async function changeQuizState(action) {
+            try {
+                const response = await fetch('/api/quiz-state', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': adminPassword
+                    },
+                    body: JSON.stringify({ action })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    updateQuizStateDisplay(data.state);
+                    updateLeaderboard();
+
+                    if (action === 'reset') {
+                        alert('✅ Quiz has been reset. All data cleared.');
+                    } else if (action === 'start') {
+                        alert('✅ Quiz is now live! Participants can start.');
+                    } else if (action === 'end') {
+                        alert('✅ Quiz has ended. No more submissions accepted.');
+                    }
+                } else {
+                    alert(data.message || 'Action failed');
+                }
+            } catch (error) {
+                console.error('Error changing quiz state:', error);
+                alert('Failed to change quiz state');
+            }
+        }
+
+        elements.startQuizBtn.addEventListener('click', () => {
+            if (confirm('Start the quiz? Participants will be able to play.')) {
+                changeQuizState('start');
+            }
+        });
+
+        elements.endQuizBtn.addEventListener('click', () => {
+            if (confirm('End the quiz? This will stop all active sessions.')) {
+                changeQuizState('end');
+            }
+        });
+
+        elements.resetQuizBtn.addEventListener('click', () => {
+            if (confirm('Reset all data? This will clear the leaderboard and return to Inactive state. This cannot be undone.')) {
+                changeQuizState('reset');
+            }
+        });
+
+        // ==================== LEADERBOARD ====================
+        async function updateLeaderboard() {
+            try {
+                const response = await fetch('/api/leaderboard');
+                const data = await response.json();
+
+                displayLeaderboard(data.leaderboard, data.winnerCount);
+
+                // Check if auto-end occurred
+                if (data.winnerCount >= 7 && currentQuizState === 'live') {
+                    alert('🎉 7 winners reached! Quiz automatically ended.');
+                    checkQuizState();
+                }
+            } catch (error) {
+                console.error('Error updating leaderboard:', error);
+            }
+        }
+
+        function displayLeaderboard(leaderboard, winnerCount) {
+            elements.winnerCount.textContent = `${winnerCount} / 7 Winners`;
+
+            if (leaderboard.length === 0) {
+                elements.leaderboardContent.innerHTML = '<div class="empty-state">No winners yet</div>';
+                return;
+            }
+
+            const table = `
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name / ID</th>
+                            <th>Timestamp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${leaderboard.map((entry, index) => `
+                            <tr>
+                                <td class="rank">${index + 1}</td>
+                                <td>${escapeHtml(entry.userId)}</td>
+                                <td>${formatTimestamp(entry.timestamp)}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+
+            elements.leaderboardContent.innerHTML = table;
+        }
+
+        function formatTimestamp(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleString();
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ==================== INITIALIZATION ====================
+        function loadAdminData() {
+            checkQuizState();
+            updateLeaderboard();
+
+            // Poll every 3 seconds
+            setInterval(() => {
+                checkQuizState();
+                updateLeaderboard();
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
