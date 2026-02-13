@@ -49,7 +49,7 @@
                         <li><strong>Start Quiz:</strong> Allows participants to begin taking the quiz</li>
                         <li><strong>End Quiz:</strong> Stops all submissions immediately</li>
                         <li><strong>Reset:</strong> Clears all data and returns to Inactive state</li>
-                        <li><strong>Auto-End:</strong> Quiz automatically ends when 7 winners are reached</li>
+                        <li><strong>Auto-End:</strong> Quiz automatically ends when 5 winners are reached</li>
                     </ul>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                 <div class="card glass-card">
                     <div class="leaderboard-header">
                         <h2>🏆 Live Leaderboard</h2>
-                        <span id="winnerCount" class="winner-badge">0 / 7 Winners</span>
+                        <span id="winnerCount" class="winner-badge">0 / 5 Winners</span>
                     </div>
                     <div id="leaderboardContent">
                         <div class="empty-state">No winners yet</div>
@@ -114,7 +114,7 @@
         // ==================== QUIZ STATE ====================
         async function checkQuizState() {
             try {
-                const response = await fetch('/api/quiz-state', {
+                const response = await fetch('/api/quiz-state?admin=1', {
                     headers: {
                         'Authorization': adminPassword
                     }
@@ -221,8 +221,8 @@
                 displayLeaderboard(data.leaderboard, data.winnerCount);
 
                 // Check if auto-end occurred
-                if (data.winnerCount >= 7 && currentQuizState === 'live') {
-                    alert('🎉 7 winners reached! Quiz automatically ended.');
+                if (data.winnerCount >= 5 && currentQuizState === 'live') {
+                    alert('🎉 5 winners reached! Quiz automatically ended.');
                     checkQuizState();
                 }
             } catch (error) {
@@ -231,7 +231,7 @@
         }
 
         function displayLeaderboard(leaderboard, winnerCount) {
-            elements.winnerCount.textContent = `${winnerCount} / 7 Winners`;
+            elements.winnerCount.textContent = `${winnerCount} / 5 Winners`;
 
             if (leaderboard.length === 0) {
                 elements.leaderboardContent.innerHTML = '<div class="empty-state">No winners yet</div>';

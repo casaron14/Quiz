@@ -25,14 +25,18 @@ module.exports = async (req, res) => {
     }
 
     // Get 10 random questions from the pool
-    const shuffledQuestions = shuffleArray(questions.questions);
+    const questionsWithId = questions.questions.map((question, index) => ({
+        id: index,
+        ...question
+    }));
+    const shuffledQuestions = shuffleArray(questionsWithId);
     const selectedQuestions = shuffledQuestions.slice(0, 10);
 
     // Don't send correct answers to client
     const questionsForClient = selectedQuestions.map(q => ({
+        id: q.id,
         question: q.question,
-        options: q.options,
-        correctAnswer: q.correctAnswer // Will be validated server-side on submission
+        options: q.options
     }));
 
     return res.status(200).json({

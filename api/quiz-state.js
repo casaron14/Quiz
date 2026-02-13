@@ -1,13 +1,13 @@
 // In-memory storage (will reset on deployment)
 // For production, replace with Vercel KV or similar
-let quizState = {
+const quizState = {
     state: 'inactive', // inactive, live, ended
     leaderboard: [],
     winnerCount: 0
 };
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
-const MAX_WINNERS = 7;
+const MAX_WINNERS = 5;
 
 module.exports = async (req, res) => {
     // Enable CORS
@@ -21,6 +21,13 @@ module.exports = async (req, res) => {
 
     // GET: Return current quiz state
     if (req.method === 'GET') {
+        const isAdminRequest = req.query && req.query.admin === '1';
+        const authHeader = req.headers.authorization;
+
+        if (isAdminRequest && authHeader !== ADMIN_PASSWORD) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
+
         return res.status(200).json({
             state: quizState.state,
             winnerCount: quizState.winnerCount
@@ -59,11 +66,9 @@ module.exports = async (req, res) => {
                 return res.status(400).json({ message: 'Quiz is not live' });
 
             case 'reset':
-                quizState = {
-                    state: 'inactive',
-                    leaderboard: [],
-                    winnerCount: 0
-                };
+                quizState.state = 'inactive';
+                quizState.leaderboard = [];
+                quizState.winnerCount = 0;
                 return res.status(200).json({
                     state: quizState.state,
                     message: 'Quiz reset successfully'

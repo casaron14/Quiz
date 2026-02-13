@@ -29,10 +29,9 @@
                     <ul>
                         <li>You'll have <strong>100 seconds</strong> to answer 10 random questions</li>
                         <li>Each question has multiple choice answers</li>
-                        <li>Get <strong>immediate feedback</strong> on each answer (green = correct, red = incorrect)
-                        </li>
+                        <li>Answers are checked at the end of the quiz</li>
                         <li>Answer all 10 correctly within time to make the leaderboard</li>
-                        <li>First 7 winners get prizes! 🏆</li>
+                        <li>First 5 winners get prizes! 🏆</li>
                     </ul>
                 </div>
                 <div class="text-center mt-lg">
@@ -54,7 +53,7 @@
                 <div class="question-container">
                     <div class="question-header">
                         <span id="questionNumber" class="question-number">Question 1 of 10</span>
-                        <span id="correctCount" class="question-number">Correct: 0</span>
+                        <span id="correctCount" class="question-number">Answered: 0</span>
                     </div>
                     <h2 id="questionText" class="question-text"></h2>
                     <div id="optionsContainer" class="options-container"></div>
@@ -110,7 +109,7 @@
             <div class="card glass-card">
                 <div class="leaderboard-header">
                     <h2>🏆 Leaderboard</h2>
-                    <span id="winnerCount" class="winner-badge">0 / 7 Winners</span>
+                    <span id="winnerCount" class="winner-badge">0 / 5 Winners</span>
                 </div>
                 <div id="leaderboardContent">
                     <div class="empty-state">No winners yet. Be the first!</div>
@@ -124,7 +123,7 @@
         const state = {
             questions: [],
             currentQuestionIndex: 0,
-            correctAnswers: 0,
+            answeredCount: 0,
             timeRemaining: 100,
             timerInterval: null,
             quizState: 'inactive', // inactive, live, ended
@@ -289,7 +288,7 @@
 
             // Reset state completely
             state.currentQuestionIndex = 0;
-            state.correctAnswers = 0;
+            state.answeredCount = 0;
             state.userAnswers = [];
             state.timeRemaining = 100;
 
@@ -315,7 +314,7 @@
             const question = state.questions[state.currentQuestionIndex];
 
             elements.questionNumber.textContent = `Question ${state.currentQuestionIndex + 1} of ${state.questions.length}`;
-            elements.correctCount.textContent = `Correct: ${state.correctAnswers}`;
+            elements.correctCount.textContent = `Answered: ${state.answeredCount}`;
             elements.questionText.textContent = question.question;
 
             // Clear and populate options
@@ -339,20 +338,14 @@
                 return;
             }
 
-            const question = state.questions[state.currentQuestionIndex];
-            const isCorrect = selectedIndex === question.correctAnswer;
-
             // Disable all options
             const options = elements.optionsContainer.querySelectorAll('.option');
             options.forEach(opt => opt.disabled = true);
 
             // Show feedback
-            options[selectedIndex].classList.add(isCorrect ? 'correct' : 'incorrect');
-
-            if (isCorrect) {
-                state.correctAnswers++;
-                state.userAnswers.push(selectedIndex);
-            }
+            options[selectedIndex].classList.add('selected');
+            state.userAnswers[state.currentQuestionIndex] = selectedIndex;
+            state.answeredCount = state.currentQuestionIndex + 1;
 
             // Auto-advance after short delay
             setTimeout(() => {
@@ -370,26 +363,58 @@
         function handleQuizComplete() {
             stopTimer();
 
-            if (state.correctAnswers === state.questions.length) {
-                showView('completion');
-            } else {
-                handleTimeOut('incomplete');
-            }
+            validateQuiz();
         }
 
-            function handleTimeOut(reason) {
-                if (reason === 'incomplete') {
-                    const missed = state.questions.length - state.correctAnswers;
-                    const plural = missed === 1 ? 'question' : 'questions';
-                    elements.retryTitle.textContent = 'Results';
-                    elements.retryMessage.textContent = `You missed ${missed} ${plural}. Please try again.`;
-                } else {
-                    elements.retryTitle.textContent = "⏰ Time's Up!";
-                    elements.retryMessage.textContent = `You answered ${state.correctAnswers} out of ${state.questions.length} questions correctly.`;
+        function handleTimeOut(reason, correctCount = 0) {
+            if (reason === 'incomplete') {
+                const missed = state.questions.length - correctCount;
+                const plural = missed === 1 ? 'question' : 'questions';
+                elements.retryTitle.textContent = 'Results';
+                elements.retryMessage.textContent = `You missed ${missed} ${plural}. Please try again.`;
+            } else {
+                elements.retryTitle.textContent = "⏰ Time's Up!";
+                elements.retryMessage.textContent = `You answered ${state.answeredCount} out of ${state.questions.length} questions.`;
+            }
+
+            showView('retry');
+        }
+
+        async function validateQuiz() {
+            try {
+                const response = await fetch('/api/validate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        questionIds: state.questions.map(question => question.id),
+                        answers: state.userAnswers
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    if (data.message === 'Quiz has ended') {
+                        showView('ended');
+                        return;
+                    }
+
+                    alert(data.message || 'Failed to validate answers. Please try again.');
+                    showView('retry');
+                    return;
                 }
 
+                if (data.correctCount === state.questions.length) {
+                    showView('completion');
+                } else {
+                    handleTimeOut('incomplete', data.correctCount);
+                }
+            } catch (error) {
+                console.error('Validation error:', error);
+                alert('Failed to validate answers. Please try again.');
                 showView('retry');
             }
+        }
 
         // ==================== SUBMISSION ====================
         elements.submissionForm.addEventListener('submit', async (e) => {
@@ -408,7 +433,7 @@
                     body: JSON.stringify({
                         userId,
                         answers: state.userAnswers,
-                        correctCount: state.correctAnswers
+                        questionIds: state.questions.map(question => question.id)
                     })
                 });
 
@@ -423,6 +448,8 @@
                     if (data.message === 'Quiz has ended') {
                         alert('The quiz has ended. No more submissions are being accepted.');
                         showView('ended');
+                    } else if (typeof data.correctCount === 'number') {
+                        handleTimeOut('incomplete', data.correctCount);
                     } else {
                         alert(data.message || 'Submission failed. Please try again.');
                     }
@@ -446,7 +473,7 @@
         }
 
         function displayLeaderboard(leaderboard, winnerCount) {
-            elements.winnerCount.textContent = `${winnerCount} / 7 Winners`;
+            elements.winnerCount.textContent = `${winnerCount} / 5 Winners`;
 
             if (leaderboard.length === 0) {
                 elements.leaderboardContent.innerHTML = '<div class="empty-state">No winners yet. Be the first!</div>';
