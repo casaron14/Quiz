@@ -38,6 +38,9 @@ module.exports = async (req, res) => {
     if (req.method === 'POST') {
         const authHeader = req.headers.authorization;
 
+        // Debug logging
+        console.log(`[quiz-state POST] Auth header: "${authHeader}", Expected: "${ADMIN_PASSWORD}"`);
+
         if (authHeader !== ADMIN_PASSWORD) {
             return res.status(401).json({ message: 'Unauthorized' });
         }
