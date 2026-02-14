@@ -228,9 +228,6 @@
                 state.timeRemaining--;
                 updateTimerDisplay();
 
-                // Check for quiz end every second
-                await checkQuizState();
-
                 if (state.timeRemaining <= 0) {
                     stopTimer();
                     handleTimeOut('timeout');

@@ -55,15 +55,18 @@ module.exports = async (req, res) => {
         new Date(a.timestamp) - new Date(b.timestamp)
     );
 
-    // Auto-end if we reached max winners
-    if (quizState.winnerCount >= quizStateModule.MAX_WINNERS) {
-        quizState.state = 'ended';
-    }
-
-    return res.status(200).json({
+    const response = {
         message: 'Submission successful',
         rank: quizState.leaderboard.findIndex(s => s.timestamp === submission.timestamp) + 1,
         winnerCount: quizState.winnerCount,
-        quizEnded: quizState.state === 'ended'
-    });
+        quizEnded: false
+    };
+
+    // Auto-end if we reached max winners (after sending success response)
+    if (quizState.winnerCount >= quizStateModule.MAX_WINNERS) {
+        quizState.state = 'ended';
+        response.quizEnded = true;
+    }
+
+    return res.status(200).json(response);
 };
