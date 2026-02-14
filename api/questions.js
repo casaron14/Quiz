@@ -32,11 +32,12 @@ module.exports = async (req, res) => {
     const shuffledQuestions = shuffleArray(questionsWithId);
     const selectedQuestions = shuffledQuestions.slice(0, 10);
 
-    // Don't send correct answers to client
+    // Send questions with correct answers (client-side validation)
     const questionsForClient = selectedQuestions.map(q => ({
         id: q.id,
         question: q.question,
-        options: q.options
+        options: q.options,
+        correctAnswer: q.correctAnswer
     }));
 
     return res.status(200).json({

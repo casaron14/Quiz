@@ -456,13 +456,6 @@ body {
     box-shadow: 5px 5px 0px var(--primary);
 }
 
-.option.selected {
-    background: var(--primary-light);
-    border-color: var(--primary);
-    color: var(--text-primary);
-    box-shadow: 4px 4px 0px var(--primary-dark);
-}
-
 .option.correct {
     background: var(--success);
     border-color: hsl(142, 45%, 35%);
