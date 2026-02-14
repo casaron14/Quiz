@@ -33,9 +33,8 @@ module.exports = async (req, res) => {
         return res.status(400).json({ message: 'Quiz has ended' });
     }
 
-    // Check winner limit
+    // Check winner limit BEFORE adding (allow up to MAX_WINNERS)
     if (quizState.winnerCount >= quizStateModule.MAX_WINNERS) {
-        quizState.state = 'ended';
         return res.status(400).json({ message: 'Quiz has ended' });
     }
 
@@ -62,7 +61,7 @@ module.exports = async (req, res) => {
         quizEnded: false
     };
 
-    // Auto-end if we reached max winners (after sending success response)
+    // Auto-end if we NOW reached max winners (after accepting this submission)
     if (quizState.winnerCount >= quizStateModule.MAX_WINNERS) {
         quizState.state = 'ended';
         response.quizEnded = true;
