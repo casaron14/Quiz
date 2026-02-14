@@ -18,6 +18,7 @@ app.all('/api/questions', require('./api/questions'));
 app.all('/api/submit', require('./api/submit'));
 app.all('/api/leaderboard', require('./api/leaderboard'));
 app.all('/api/validate', require('./api/validate'));
+app.all('/api/debug', require('./api/debug'));
 
 // Fallback to index.html
 app.get('*', (req, res) => {
