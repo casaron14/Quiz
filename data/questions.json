@@ -1,204 +1,404 @@
 {
   "questions": [
     {
-      "question": "What does HTML stand for?",
+      "question": "Lengo kuu la Inkryptus kama mradi wa utility ni lipi?",
       "options": [
-        "Hyper Text Markup Language",
-        "High Tech Modern Language",
-        "Home Tool Markup Language",
-        "Hyperlinks and Text Markup Language"
+        "Kutoa token ya kubahatisha bei ipande haraka",
+        "Kujenga mfumo wa kiuchumi wenye matumizi halisi ndani ya ecosystem",
+        "Kutoa mining rewards pekee",
+        "Kuwa sarafu ya kulipia ada za serikali"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Ni nini kinachofanya INKY kuwa utility token badala ya speculative token?",
+      "options": [
+        "Inatumika ndani ya huduma na miamala ya mfumo",
+        "Bei yake hubadilika kila siku",
+        "Inaweza kununuliwa kwenye exchange",
+        "Ina supply iliyowekwa"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "Which programming language is known as the 'language of the web'?",
+      "question": "Nguzo kuu ya blockchain inayolinda miamala ya Inkryptus ni ipi?",
       "options": [
-        "Python",
-        "JavaScript",
-        "Java",
-        "C++"
+        "Central authority",
+        "Manual verification",
+        "Cryptographic security",
+        "Paper records"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Ikiwa token haina matumizi ndani ya mfumo, hatari yake kubwa ni ipi?",
+      "options": [
+        "Kuongezeka kwa adoption",
+        "Kutegemea hype pekee",
+        "Kupunguza volatility",
+        "Kuimarika kwa utility"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "What does CSS stand for?",
+      "question": "Tokenomics ya Inkryptus inapaswa kueleweka kwa sababu gani?",
       "options": [
-        "Creative Style Sheets",
-        "Cascading Style Sheets",
-        "Computer Style Sheets",
-        "Colorful Style Sheets"
+        "Ili kujua rangi ya logo",
+        "Ili kujua mahali ofisi ilipo",
+        "Ili kuelewa mzunguko wa thamani ndani ya ecosystem",
+        "Ili kufahamu historia ya blockchain"
       ],
-      "correctAnswer": 1
+      "correctAnswer": 2
     },
     {
-      "question": "What is the primary purpose of a database?",
+      "question": "Supply iliyodhibitiwa kwenye token inasaidia nini?",
       "options": [
-        "To design websites",
-        "To store and organize data",
-        "To create animations",
-        "To write code"
+        "Kuzuia scarcity",
+        "Kupunguza matumizi",
+        "Kudhibiti mfumuko wa token",
+        "Kuongeza mining bure"
       ],
-      "correctAnswer": 1
+      "correctAnswer": 2
     },
     {
-      "question": "Which of these is a version control system?",
+      "question": "Ni ipi kati ya hizi NI nguzo ya blockchain?",
       "options": [
-        "Docker",
-        "Git",
-        "Node.js",
-        "React"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "What does API stand for?",
-      "options": [
-        "Application Programming Interface",
-        "Advanced Programming Integration",
-        "Automated Program Interaction",
-        "Application Process Integration"
+        "Decentralization",
+        "Inflation control ya serikali",
+        "Bank guarantee",
+        "Physical vault"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "Which cloud platform is built by Amazon?",
+      "question": "Thamani ya utility token kama INKY hutokana zaidi na nini?",
       "options": [
-        "Azure",
-        "Google Cloud",
-        "AWS",
-        "IBM Cloud"
+        "Tweet za influencers",
+        "Matumizi halisi ndani ya mfumo",
+        "Speculation ya muda mfupi",
+        "Uvumi wa soko"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Kwa nini decentralization ni muhimu kwa Inkryptus?",
+      "options": [
+        "Ili mtu mmoja adhibiti mfumo",
+        "Ili kuondoa uwazi",
+        "Ili kuimarisha uwazi na kupunguza udhibiti wa mtu mmoja",
+        "Ili kuongeza ada"
       ],
       "correctAnswer": 2
     },
     {
-      "question": "What is the main function of a router in networking?",
+      "question": "Ikiwa hakuna demand ya matumizi ya INKY, nini kitaathirika kwanza?",
       "options": [
-        "Store files",
-        "Connect devices and route data",
-        "Increase internet speed",
-        "Protect from viruses"
+        "Logo ya mradi",
+        "Token utility perception",
+        "Whitepaper format",
+        "Domain name"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Which language is primarily used for iOS app development?",
+      "question": "Transparency kwenye blockchain inamaanisha nini?",
       "options": [
-        "Kotlin",
-        "Java",
-        "Swift",
-        "Python"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What does SQL stand for?",
-      "options": [
-        "Simple Query Language",
-        "Structured Query Language",
-        "Standard Query Language",
-        "System Query Language"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "What is the purpose of a firewall?",
-      "options": [
-        "Speed up connections",
-        "Protect network from threats",
-        "Store passwords",
-        "Increase bandwidth"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Which protocol is used for secure web browsing?",
-      "options": [
-        "HTTP",
-        "FTP",
-        "HTTPS",
-        "SMTP"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What does RAM stand for?",
-      "options": [
-        "Read Access Memory",
-        "Random Access Memory",
-        "Rapid Application Memory",
-        "Read And Modify"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Which company developed the Android operating system?",
-      "options": [
-        "Apple",
-        "Microsoft",
-        "Google",
-        "Samsung"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the main purpose of an operating system?",
-      "options": [
-        "Browse the internet",
-        "Manage hardware and software resources",
-        "Create documents",
-        "Send emails"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "What does AI stand for?",
-      "options": [
-        "Automated Intelligence",
-        "Artificial Intelligence",
-        "Advanced Integration",
-        "Application Interface"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Which of these is a NoSQL database?",
-      "options": [
-        "MySQL",
-        "PostgreSQL",
-        "MongoDB",
-        "Oracle"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the primary function of DNS?",
-      "options": [
-        "Encrypt data",
-        "Convert domain names to IP addresses",
-        "Store files",
-        "Compress images"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Which programming paradigm does Python support?",
-      "options": [
-        "Only object-oriented",
-        "Only functional",
-        "Multiple paradigms",
-        "Only procedural"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What does IoT stand for?",
-      "options": [
-        "Internet of Things",
-        "Integration of Technology",
-        "International Technology",
-        "Internet on Time"
+        "Miamala inaweza kufuatiliwa hadharani",
+        "Admin anaweza kufuta transaction",
+        "Data inahifadhiwa kwenye laptop moja",
+        "Token inachapishwa kwa siri"
       ],
       "correctAnswer": 0
+    },
+    {
+      "question": "Kwa mwekezaji makini, swali muhimu kuhusu Inkryptus ni lipi?",
+      "options": [
+        "Bei itapanda lini?",
+        "Nani maarufu anaizungumza?",
+        "Inatatua tatizo gani la kiuchumi?",
+        "Ina followers wangapi?"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Utility token yenye matumizi mengi ndani ya ecosystem huathiri vipi thamani?",
+      "options": [
+        "Huongeza uwezekano wa demand endelevu",
+        "Huondoa volatility kabisa",
+        "Huifanya isiwe na soko",
+        "Huongeza inflation ya fiat"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Consensus mechanism kwenye blockchain husaidia nini?",
+      "options": [
+        "Kupamba mtandao",
+        "Kuthibitisha miamala bila mamlaka kuu",
+        "Kupunguza nodes",
+        "Kuhifadhi data offline"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Tofauti kuu kati ya utility token na meme token ni ipi?",
+      "options": [
+        "Utility ina matumizi halisi",
+        "Meme ina blockchain yake",
+        "Utility haina supply",
+        "Meme haina volatility"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Ikiwa ecosystem ya Inkryptus inapanuka, nini kinaongezeka kimantiki?",
+      "options": [
+        "Supply isiyodhibitiwa",
+        "Matumizi ya token",
+        "Central control",
+        "Paper contracts"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Scarcity kwenye tokenomics inahusiana na nini?",
+      "options": [
+        "Upungufu wa matumizi",
+        "Udhibiti wa idadi ya token",
+        "Kupungua kwa nodes",
+        "Kuongezeka kwa admins"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Ni hatari gani ya kuwekeza bila kuelewa utility?",
+      "options": [
+        "Kupata faida haraka",
+        "Kutegemea hisia badala ya mantiki",
+        "Kuongeza diversification",
+        "Kupunguza risk"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Blockchain bila transparency inaweza kusababisha nini?",
+      "options": [
+        "Kuimarika kwa trust",
+        "Kupungua kwa accountability",
+        "Kuongezeka kwa decentralization",
+        "Kupungua kwa volatility"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Utility ya INKY ndani ya mfumo ina maana gani kwa mzunguko wa thamani?",
+      "options": [
+        "Thamani inabaki stagnant",
+        "Hakuna athari",
+        "Inazalisha demand ya ndani",
+        "Inategemea benki"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Je, mradi unaweza kuwa na blockchain lakini usiwe na utility ya maana?",
+      "options": [
+        "Ndiyo",
+        "Hapana",
+        "Haiwezekani",
+        "Blockchain hutoa utility moja kwa moja"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Ni ipi kati ya hizi inaonyesha utility halisi?",
+      "options": [
+        "Token kununuliwa kisha kushikiliwa bila matumizi",
+        "Token kutumika kulipia huduma ndani ya mfumo",
+        "Kupanda kwa bei kwa siku moja",
+        "Kupata likes mtandaoni"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Ikiwa token inachapishwa bila kikomo, nini hutokea mara nyingi?",
+      "options": [
+        "Scarcity inaongezeka",
+        "Inflation ya token",
+        "Demand inaimarika",
+        "Volatility inapotea"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Kwa nini uwazi wa miamala ni muhimu kwa wawekezaji wa Inkryptus?",
+      "options": [
+        "Ili kuficha data",
+        "Ili kuimarisha imani",
+        "Ili kupunguza nodes",
+        "Ili kuzuia matumizi"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Demand ya ndani ya ecosystem hutegemea nini zaidi?",
+      "options": [
+        "Speculation ya nje",
+        "Matumizi halisi ya token",
+        "Uvumi",
+        "Random trading"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Je, utility pekee inatosha bila adoption?",
+      "options": [
+        "Ndiyo",
+        "Hapana",
+        "Daima",
+        "Moja kwa moja"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Nguzo tatu za blockchain mara nyingi hujumuisha nini?",
+      "options": [
+        "Decentralization, Transparency, Security",
+        "Mining, Printing, Burning",
+        "Banking, Lending, Saving",
+        "Trading, Pumping, Dumping"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Thamani endelevu ya INKY inategemea nini?",
+      "options": [
+        "Matumizi ya muda mfupi",
+        "Utility na adoption ya muda mrefu",
+        "Rumors",
+        "Speculative spikes"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Ikiwa mfumo ni centralized, nini hupungua?",
+      "options": [
+        "Udhibiti wa mtu mmoja",
+        "Transparency ya wazi",
+        "Uwezo wa kuingilia kati",
+        "Control ya admin"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Kwa nini tokenomics ni muhimu kuliko hype?",
+      "options": [
+        "Hype hudumu milele",
+        "Tokenomics inaonyesha mantiki ya kiuchumi",
+        "Hype hupunguza risk",
+        "Tokenomics haina impact"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Ni ipi kati ya hizi ni dalili ya mradi dhaifu?",
+      "options": [
+        "Utility wazi",
+        "Whitepaper yenye mantiki",
+        "Kutegemea promo pekee",
+        "Transparency ya miamala"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Mzunguko wa thamani ndani ya Inkryptus unahitaji nini?",
+      "options": [
+        "Matumizi endelevu ya token",
+        "Speculation tu",
+        "Central authority",
+        "Unlimited minting"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Je, bei ya token ni sawa na utility yake?",
+      "options": [
+        "Ndiyo",
+        "Siku zote",
+        "Hapana",
+        "Moja kwa moja"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Utility token yenye demand ya ndani inaathiri vipi soko?",
+      "options": [
+        "Huongeza msingi wa thamani",
+        "Huondoa trading",
+        "Huondoa supply",
+        "Huondoa blockchain"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Kabla ya kuwekeza, ni ipi hatua ya busara?",
+      "options": [
+        "Kufuata umati",
+        "Kusoma tokenomics na utility",
+        "Kusubiri hype",
+        "Kuamini uvumi"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Je, decentralization inamaanisha hakuna sheria?",
+      "options": [
+        "Ndiyo",
+        "Daima",
+        "Hapana",
+        "Moja kwa moja"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Inkryptus ikiwa na matumizi mengi, nini hutokea kwa perception ya thamani?",
+      "options": [
+        "Huimarika",
+        "Hupotea",
+        "Hubaki sawa",
+        "Huondolewa"
+      ],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Speculation bila utility ni sawa na nini?",
+      "options": [
+        "Uwekezaji wa mantiki",
+        "Msingi imara",
+        "Hatari isiyotabirika",
+        "Adoption ya kudumu"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Je, utility inaweza kusaidia kupunguza utegemezi wa hype?",
+      "options": [
+        "Hapana",
+        "Ndiyo",
+        "Haiwezekani",
+        "Si muhimu"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Kipimo cha mwisho cha mradi wa utility kama Inkryptus ni nini?",
+      "options": [
+        "Idadi ya promo",
+        "Bei ya muda mfupi",
+        "Matumizi halisi na adoption",
+        "Logo na branding"
+      ],
+      "correctAnswer": 2
     }
   ]
 }
