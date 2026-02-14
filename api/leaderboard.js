@@ -1,5 +1,5 @@
-// Import shared quiz state
-const quizStateModule = require('./quiz-state.js');
+// Persistent storage using Vercel KV
+const kvStore = require('./kv-store');
 
 module.exports = async (req, res) => {
     // Enable CORS
@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
         return res.status(405).json({ message: 'Method not allowed' });
     }
 
-    const quizState = quizStateModule.quizState;
+    const quizState = await kvStore.getQuizState();
 
     return res.status(200).json({
         leaderboard: quizState.leaderboard,

@@ -1,5 +1,5 @@
-// Import shared quiz state
-const quizStateModule = require('./quiz-state.js');
+// Persistent storage using Vercel KV
+const kvStore = require('./kv-store');
 
 module.exports = async (req, res) => {
     // Enable CORS
@@ -27,14 +27,14 @@ module.exports = async (req, res) => {
     }
 
     // Check quiz state
-    const quizState = quizStateModule.quizState;
+    const quizState = await kvStore.getQuizState();
 
     if (quizState.state !== 'live') {
         return res.status(400).json({ message: 'Quiz has ended' });
     }
 
     // Check winner limit BEFORE adding (allow up to MAX_WINNERS)
-    if (quizState.winnerCount >= quizStateModule.MAX_WINNERS) {
+    if (quizState.winnerCount >= kvStore.MAX_WINNERS) {
         return res.status(400).json({ message: 'Quiz has ended' });
     }
 
@@ -45,25 +45,19 @@ module.exports = async (req, res) => {
         correctCount: correctCount
     };
 
-    // Add to leaderboard
-    quizState.leaderboard.push(submission);
-    quizState.winnerCount++;
-
-    // Sort by timestamp (earliest first)
-    quizState.leaderboard.sort((a, b) =>
-        new Date(a.timestamp) - new Date(b.timestamp)
-    );
+    // Add to leaderboard using KV store
+    const result = await kvStore.addWinner(submission);
 
     const response = {
         message: 'Submission successful',
-        rank: quizState.leaderboard.findIndex(s => s.timestamp === submission.timestamp) + 1,
-        winnerCount: quizState.winnerCount,
+        rank: result.rank,
+        winnerCount: result.winnerCount,
         quizEnded: false
     };
 
     // Auto-end if we NOW reached max winners (after accepting this submission)
-    if (quizState.winnerCount >= quizStateModule.MAX_WINNERS) {
-        quizState.state = 'ended';
+    if (result.winnerCount >= kvStore.MAX_WINNERS) {
+        await kvStore.setQuizState('ended');
         response.quizEnded = true;
     }
 

@@ -1,13 +1,7 @@
-// In-memory storage (will reset on deployment)
-// For production, replace with Vercel KV or similar
-const quizState = {
-    state: 'inactive', // inactive, live, ended
-    leaderboard: [],
-    winnerCount: 0
-};
+// Persistent storage using Vercel KV
+const kvStore = require('./kv-store');
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
-const MAX_WINNERS = 5;
 
 module.exports = async (req, res) => {
     // Enable CORS
@@ -28,6 +22,8 @@ module.exports = async (req, res) => {
             return res.status(401).json({ message: 'Unauthorized' });
         }
 
+        const quizState = await kvStore.getQuizState();
+
         return res.status(200).json({
             state: quizState.state,
             winnerCount: quizState.winnerCount
@@ -46,13 +42,14 @@ module.exports = async (req, res) => {
         }
 
         const { action } = req.body;
+        const quizState = await kvStore.getQuizState();
 
         switch (action) {
             case 'start':
                 if (quizState.state === 'inactive') {
-                    quizState.state = 'live';
+                    await kvStore.setQuizState('live');
                     return res.status(200).json({
-                        state: quizState.state,
+                        state: 'live',
                         message: 'Quiz started'
                     });
                 }
@@ -60,20 +57,18 @@ module.exports = async (req, res) => {
 
             case 'end':
                 if (quizState.state === 'live') {
-                    quizState.state = 'ended';
+                    await kvStore.setQuizState('ended');
                     return res.status(200).json({
-                        state: quizState.state,
+                        state: 'ended',
                         message: 'Quiz ended'
                     });
                 }
                 return res.status(400).json({ message: 'Quiz is not live' });
 
             case 'reset':
-                quizState.state = 'inactive';
-                quizState.leaderboard = [];
-                quizState.winnerCount = 0;
+                await kvStore.resetQuiz();
                 return res.status(200).json({
-                    state: quizState.state,
+                    state: 'inactive',
                     message: 'Quiz reset successfully'
                 });
 
@@ -84,7 +79,3 @@ module.exports = async (req, res) => {
 
     return res.status(405).json({ message: 'Method not allowed' });
 };
-
-// Export quizState for access from other API endpoints
-module.exports.quizState = quizState;
-module.exports.MAX_WINNERS = MAX_WINNERS;
