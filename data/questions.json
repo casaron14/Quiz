@@ -1,27 +1,27 @@
 {
   "questions": [
     {
-      "question": "Lengo kuu la Inkryptus kama mradi wa utility ni lipi?",
+      "question": "What is the main objective of Inkryptus as a utility project?",
       "options": [
-        "Kutoa token ya kubahatisha bei ipande haraka",
-        "Kujenga mfumo wa kiuchumi wenye matumizi halisi ndani ya ecosystem",
-        "Kutoa mining rewards pekee",
-        "Kuwa sarafu ya kulipia ada za serikali"
+        "To create a token for price speculation",
+        "To build an economic system with real use cases within the ecosystem",
+        "To provide mining rewards only",
+        "To become a government fee payment currency"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Ni nini kinachofanya INKY kuwa utility token badala ya speculative token?",
+      "question": "What makes INKY a utility token rather than a speculative token?",
       "options": [
-        "Inatumika ndani ya huduma na miamala ya mfumo",
-        "Bei yake hubadilika kila siku",
-        "Inaweza kununuliwa kwenye exchange",
-        "Ina supply iliyowekwa"
+        "It is used within services and transactions in the system",
+        "Its price changes daily",
+        "It can be bought on an exchange",
+        "It has a fixed supply"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "Nguzo kuu ya blockchain inayolinda miamala ya Inkryptus ni ipi?",
+      "question": "Which core pillar of blockchain protects Inkryptus transactions?",
       "options": [
         "Central authority",
         "Manual verification",
@@ -31,69 +31,69 @@
       "correctAnswer": 2
     },
     {
-      "question": "Ikiwa token haina matumizi ndani ya mfumo, hatari yake kubwa ni ipi?",
+      "question": "If a token has no utility within a system, what is the biggest risk?",
       "options": [
-        "Kuongezeka kwa adoption",
-        "Kutegemea hype pekee",
-        "Kupunguza volatility",
-        "Kuimarika kwa utility"
+        "Increased adoption",
+        "Relying solely on hype",
+        "Reduced volatility",
+        "Improved utility"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Tokenomics ya Inkryptus inapaswa kueleweka kwa sababu gani?",
+      "question": "Why should Inkryptus tokenomics be understood?",
       "options": [
-        "Ili kujua rangi ya logo",
-        "Ili kujua mahali ofisi ilipo",
-        "Ili kuelewa mzunguko wa thamani ndani ya ecosystem",
-        "Ili kufahamu historia ya blockchain"
+        "To know the logo color",
+        "To know where the office is located",
+        "To understand the value circulation within the ecosystem",
+        "To understand blockchain history"
       ],
       "correctAnswer": 2
     },
     {
-      "question": "Supply iliyodhibitiwa kwenye token inasaidia nini?",
+      "question": "What does controlled token supply help with?",
       "options": [
-        "Kuzuia scarcity",
-        "Kupunguza matumizi",
-        "Kudhibiti mfumuko wa token",
-        "Kuongeza mining bure"
+        "Preventing scarcity",
+        "Reducing usage",
+        "Controlling token inflation",
+        "Increasing free mining"
       ],
       "correctAnswer": 2
     },
     {
-      "question": "Ni ipi kati ya hizi NI nguzo ya blockchain?",
+      "question": "Which of the following IS a blockchain pillar?",
       "options": [
         "Decentralization",
-        "Inflation control ya serikali",
+        "Government inflation control",
         "Bank guarantee",
         "Physical vault"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "Thamani ya utility token kama INKY hutokana zaidi na nini?",
+      "question": "The value of a utility token like INKY primarily comes from what?",
       "options": [
-        "Tweet za influencers",
-        "Matumizi halisi ndani ya mfumo",
-        "Speculation ya muda mfupi",
-        "Uvumi wa soko"
+        "Influencer tweets",
+        "Real use within the system",
+        "Short-term speculation",
+        "Market rumors"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Kwa nini decentralization ni muhimu kwa Inkryptus?",
+      "question": "Why is decentralization important for Inkryptus?",
       "options": [
-        "Ili mtu mmoja adhibiti mfumo",
-        "Ili kuondoa uwazi",
-        "Ili kuimarisha uwazi na kupunguza udhibiti wa mtu mmoja",
-        "Ili kuongeza ada"
+        "To allow one person to control the system",
+        "To remove transparency",
+        "To enhance transparency and reduce single-point control",
+        "To increase fees"
       ],
       "correctAnswer": 2
     },
     {
-      "question": "Ikiwa hakuna demand ya matumizi ya INKY, nini kitaathirika kwanza?",
+      "question": "If there is no demand for INKY usage, what is affected first?",
       "options": [
-        "Logo ya mradi",
+        "Project logo",
         "Token utility perception",
         "Whitepaper format",
         "Domain name"
@@ -101,167 +101,167 @@
       "correctAnswer": 1
     },
     {
-      "question": "Transparency kwenye blockchain inamaanisha nini?",
+      "question": "What does transparency in blockchain mean?",
       "options": [
-        "Miamala inaweza kufuatiliwa hadharani",
-        "Admin anaweza kufuta transaction",
-        "Data inahifadhiwa kwenye laptop moja",
-        "Token inachapishwa kwa siri"
+        "Transactions can be publicly traced",
+        "Admin can delete transactions",
+        "Data is stored on one laptop",
+        "Tokens are secretly printed"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "Kwa mwekezaji makini, swali muhimu kuhusu Inkryptus ni lipi?",
+      "question": "For a serious investor, what is the most important question about Inkryptus?",
       "options": [
-        "Bei itapanda lini?",
-        "Nani maarufu anaizungumza?",
-        "Inatatua tatizo gani la kiuchumi?",
-        "Ina followers wangapi?"
+        "When will the price increase?",
+        "Which celebrity is talking about it?",
+        "What economic problem does it solve?",
+        "How many followers does it have?"
       ],
       "correctAnswer": 2
     },
     {
-      "question": "Utility token yenye matumizi mengi ndani ya ecosystem huathiri vipi thamani?",
+      "question": "How does a utility token with multiple use cases affect value?",
       "options": [
-        "Huongeza uwezekano wa demand endelevu",
-        "Huondoa volatility kabisa",
-        "Huifanya isiwe na soko",
-        "Huongeza inflation ya fiat"
+        "It increases the likelihood of sustainable demand",
+        "It eliminates volatility completely",
+        "It removes market presence",
+        "It increases fiat inflation"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "Consensus mechanism kwenye blockchain husaidia nini?",
+      "question": "What does a blockchain consensus mechanism help with?",
       "options": [
-        "Kupamba mtandao",
-        "Kuthibitisha miamala bila mamlaka kuu",
-        "Kupunguza nodes",
-        "Kuhifadhi data offline"
+        "Decorating the network",
+        "Validating transactions without central authority",
+        "Reducing nodes",
+        "Storing data offline"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Tofauti kuu kati ya utility token na meme token ni ipi?",
+      "question": "What is the key difference between a utility token and a meme token?",
       "options": [
-        "Utility ina matumizi halisi",
-        "Meme ina blockchain yake",
-        "Utility haina supply",
-        "Meme haina volatility"
+        "Utility has real use cases",
+        "Meme has its own blockchain",
+        "Utility has no supply",
+        "Meme has no volatility"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "Ikiwa ecosystem ya Inkryptus inapanuka, nini kinaongezeka kimantiki?",
+      "question": "If the Inkryptus ecosystem expands, what logically increases?",
       "options": [
-        "Supply isiyodhibitiwa",
-        "Matumizi ya token",
+        "Uncontrolled supply",
+        "Token usage",
         "Central control",
         "Paper contracts"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Scarcity kwenye tokenomics inahusiana na nini?",
+      "question": "Scarcity in tokenomics relates to what?",
       "options": [
-        "Upungufu wa matumizi",
-        "Udhibiti wa idadi ya token",
-        "Kupungua kwa nodes",
-        "Kuongezeka kwa admins"
+        "Lack of usage",
+        "Controlled token supply",
+        "Decrease in nodes",
+        "Increase in admins"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Ni hatari gani ya kuwekeza bila kuelewa utility?",
+      "question": "What is the risk of investing without understanding utility?",
       "options": [
-        "Kupata faida haraka",
-        "Kutegemea hisia badala ya mantiki",
-        "Kuongeza diversification",
-        "Kupunguza risk"
+        "Quick profits",
+        "Relying on emotions instead of logic",
+        "Increased diversification",
+        "Reduced risk"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Blockchain bila transparency inaweza kusababisha nini?",
+      "question": "Blockchain without transparency can lead to what?",
       "options": [
-        "Kuimarika kwa trust",
-        "Kupungua kwa accountability",
-        "Kuongezeka kwa decentralization",
-        "Kupungua kwa volatility"
+        "Stronger trust",
+        "Reduced accountability",
+        "Increased decentralization",
+        "Lower volatility"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Utility ya INKY ndani ya mfumo ina maana gani kwa mzunguko wa thamani?",
+      "question": "What does INKY’s utility within the system mean for value circulation?",
       "options": [
-        "Thamani inabaki stagnant",
-        "Hakuna athari",
-        "Inazalisha demand ya ndani",
-        "Inategemea benki"
+        "Value remains stagnant",
+        "No impact",
+        "It generates internal demand",
+        "It depends on banks"
       ],
       "correctAnswer": 2
     },
     {
-      "question": "Je, mradi unaweza kuwa na blockchain lakini usiwe na utility ya maana?",
+      "question": "Can a project have blockchain technology but lack meaningful utility?",
       "options": [
-        "Ndiyo",
-        "Hapana",
-        "Haiwezekani",
-        "Blockchain hutoa utility moja kwa moja"
+        "Yes",
+        "No",
+        "Impossible",
+        "Blockchain automatically provides utility"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "Ni ipi kati ya hizi inaonyesha utility halisi?",
+      "question": "Which of the following shows real utility?",
       "options": [
-        "Token kununuliwa kisha kushikiliwa bila matumizi",
-        "Token kutumika kulipia huduma ndani ya mfumo",
-        "Kupanda kwa bei kwa siku moja",
-        "Kupata likes mtandaoni"
+        "Buying and holding a token without use",
+        "Using a token to pay for services within the system",
+        "Price rising for one day",
+        "Getting social media likes"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Ikiwa token inachapishwa bila kikomo, nini hutokea mara nyingi?",
+      "question": "If a token is minted without limit, what usually happens?",
       "options": [
-        "Scarcity inaongezeka",
-        "Inflation ya token",
-        "Demand inaimarika",
-        "Volatility inapotea"
+        "Scarcity increases",
+        "Token inflation",
+        "Demand strengthens",
+        "Volatility disappears"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Kwa nini uwazi wa miamala ni muhimu kwa wawekezaji wa Inkryptus?",
+      "question": "Why is transaction transparency important for Inkryptus investors?",
       "options": [
-        "Ili kuficha data",
-        "Ili kuimarisha imani",
-        "Ili kupunguza nodes",
-        "Ili kuzuia matumizi"
+        "To hide data",
+        "To strengthen trust",
+        "To reduce nodes",
+        "To prevent usage"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Demand ya ndani ya ecosystem hutegemea nini zaidi?",
+      "question": "Internal ecosystem demand primarily depends on what?",
       "options": [
-        "Speculation ya nje",
-        "Matumizi halisi ya token",
-        "Uvumi",
+        "External speculation",
+        "Real token usage",
+        "Rumors",
         "Random trading"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Je, utility pekee inatosha bila adoption?",
+      "question": "Is utility alone enough without adoption?",
       "options": [
-        "Ndiyo",
-        "Hapana",
-        "Daima",
-        "Moja kwa moja"
+        "Yes",
+        "No",
+        "Always",
+        "Automatically"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Nguzo tatu za blockchain mara nyingi hujumuisha nini?",
+      "question": "The three main pillars of blockchain often include what?",
       "options": [
         "Decentralization, Transparency, Security",
         "Mining, Printing, Burning",
@@ -271,132 +271,132 @@
       "correctAnswer": 0
     },
     {
-      "question": "Thamani endelevu ya INKY inategemea nini?",
+      "question": "Sustainable value of INKY depends on what?",
       "options": [
-        "Matumizi ya muda mfupi",
-        "Utility na adoption ya muda mrefu",
+        "Short-term usage",
+        "Long-term utility and adoption",
         "Rumors",
         "Speculative spikes"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Ikiwa mfumo ni centralized, nini hupungua?",
+      "question": "If a system is centralized, what decreases?",
       "options": [
-        "Udhibiti wa mtu mmoja",
-        "Transparency ya wazi",
-        "Uwezo wa kuingilia kati",
-        "Control ya admin"
+        "Single-person control",
+        "Open transparency",
+        "Ability to intervene",
+        "Admin control"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Kwa nini tokenomics ni muhimu kuliko hype?",
+      "question": "Why is tokenomics more important than hype?",
       "options": [
-        "Hype hudumu milele",
-        "Tokenomics inaonyesha mantiki ya kiuchumi",
-        "Hype hupunguza risk",
-        "Tokenomics haina impact"
+        "Hype lasts forever",
+        "Tokenomics shows economic logic",
+        "Hype reduces risk",
+        "Tokenomics has no impact"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Ni ipi kati ya hizi ni dalili ya mradi dhaifu?",
+      "question": "Which of the following is a sign of a weak project?",
       "options": [
-        "Utility wazi",
-        "Whitepaper yenye mantiki",
-        "Kutegemea promo pekee",
-        "Transparency ya miamala"
+        "Clear utility",
+        "Logical whitepaper",
+        "Relying only on promotion",
+        "Transaction transparency"
       ],
       "correctAnswer": 2
     },
     {
-      "question": "Mzunguko wa thamani ndani ya Inkryptus unahitaji nini?",
+      "question": "What does value circulation in Inkryptus require?",
       "options": [
-        "Matumizi endelevu ya token",
-        "Speculation tu",
+        "Sustained token usage",
+        "Speculation only",
         "Central authority",
         "Unlimited minting"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "Je, bei ya token ni sawa na utility yake?",
+      "question": "Is token price equal to its utility?",
       "options": [
-        "Ndiyo",
-        "Siku zote",
-        "Hapana",
-        "Moja kwa moja"
+        "Yes",
+        "Always",
+        "No",
+        "Automatically"
       ],
       "correctAnswer": 2
     },
     {
-      "question": "Utility token yenye demand ya ndani inaathiri vipi soko?",
+      "question": "How does a utility token with internal demand affect the market?",
       "options": [
-        "Huongeza msingi wa thamani",
-        "Huondoa trading",
-        "Huondoa supply",
-        "Huondoa blockchain"
+        "It strengthens value foundation",
+        "It removes trading",
+        "It removes supply",
+        "It removes blockchain"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "Kabla ya kuwekeza, ni ipi hatua ya busara?",
+      "question": "Before investing, what is a wise step?",
       "options": [
-        "Kufuata umati",
-        "Kusoma tokenomics na utility",
-        "Kusubiri hype",
-        "Kuamini uvumi"
+        "Follow the crowd",
+        "Study tokenomics and utility",
+        "Wait for hype",
+        "Believe rumors"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Je, decentralization inamaanisha hakuna sheria?",
+      "question": "Does decentralization mean there are no rules?",
       "options": [
-        "Ndiyo",
-        "Daima",
-        "Hapana",
-        "Moja kwa moja"
+        "Yes",
+        "Always",
+        "No",
+        "Automatically"
       ],
       "correctAnswer": 2
     },
     {
-      "question": "Inkryptus ikiwa na matumizi mengi, nini hutokea kwa perception ya thamani?",
+      "question": "If Inkryptus has many use cases, what happens to value perception?",
       "options": [
-        "Huimarika",
-        "Hupotea",
-        "Hubaki sawa",
-        "Huondolewa"
+        "It strengthens",
+        "It disappears",
+        "It remains the same",
+        "It is removed"
       ],
       "correctAnswer": 0
     },
     {
-      "question": "Speculation bila utility ni sawa na nini?",
+      "question": "Speculation without utility is like what?",
       "options": [
-        "Uwekezaji wa mantiki",
-        "Msingi imara",
-        "Hatari isiyotabirika",
-        "Adoption ya kudumu"
+        "Logical investment",
+        "Strong foundation",
+        "Unpredictable risk",
+        "Sustainable adoption"
       ],
       "correctAnswer": 2
     },
     {
-      "question": "Je, utility inaweza kusaidia kupunguza utegemezi wa hype?",
+      "question": "Can utility help reduce dependence on hype?",
       "options": [
-        "Hapana",
-        "Ndiyo",
-        "Haiwezekani",
-        "Si muhimu"
+        "No",
+        "Yes",
+        "Impossible",
+        "Not important"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Kipimo cha mwisho cha mradi wa utility kama Inkryptus ni nini?",
+      "question": "What is the ultimate measure of a utility project like Inkryptus?",
       "options": [
-        "Idadi ya promo",
-        "Bei ya muda mfupi",
-        "Matumizi halisi na adoption",
-        "Logo na branding"
+        "Number of promotions",
+        "Short-term price",
+        "Real usage and adoption",
+        "Logo and branding"
       ],
       "correctAnswer": 2
     }
